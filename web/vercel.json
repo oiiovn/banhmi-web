@@ -1,0 +1,12 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": ".next",
+  "framework": "nextjs",
+  "installCommand": "npm install",
+  "devCommand": "npm run dev",
+  "env": {
+    "NEXT_PUBLIC_API_URL": "https://api.websi.vn/api",
+    "NEXT_PUBLIC_IMAGE_DOMAINS": "api.websi.vn,websi.vn"
+  }
+}
+

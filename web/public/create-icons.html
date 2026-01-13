@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Create PWA Icons</title>
+</head>
+<body>
+  <canvas id="canvas" width="512" height="512"></canvas>
+  <script>
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    
+    // Background
+    ctx.fillStyle = '#f97316';
+    ctx.fillRect(0, 0, 512, 512);
+    
+    // Text
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 200px Arial';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('🍞', 256, 256);
+    
+    // Download as PNG
+    canvas.toBlob((blob) => {
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'icon-512x512.png';
+      a.click();
+      
+      // Create 192x192
+      const canvas192 = document.createElement('canvas');
+      canvas192.width = 192;
+      canvas192.height = 192;
+      const ctx192 = canvas192.getContext('2d');
+      ctx192.drawImage(canvas, 0, 0, 192, 192);
+      canvas192.toBlob((blob192) => {
+        const url192 = URL.createObjectURL(blob192);
+        const a192 = document.createElement('a');
+        a192.href = url192;
+        a192.download = 'icon-192x192.png';
+        a192.click();
+      });
+    });
+  </script>
+</body>
+</html>

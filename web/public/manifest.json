@@ -1,0 +1,27 @@
+{
+  "name": "Banhmi - Đặt hàng bánh mì online",
+  "short_name": "Banhmi",
+  "description": "Đặt hàng bánh mì ngon, nhanh chóng và tiện lợi",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#f97316",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "categories": ["food", "shopping"],
+  "screenshots": []
+}
+
