@@ -2,18 +2,26 @@ import axios from 'axios'
 
 // Auto-detect API URL based on environment (runtime detection)
 const getApiUrl = (): string => {
-  // Auto-detect production based on hostname (client-side only)
+  // Priority 1: Environment variable (build time)
+  if (typeof process !== 'undefined' && process.env.NEXT_PUBLIC_API_URL) {
+    return process.env.NEXT_PUBLIC_API_URL
+  }
+  
+  // Priority 2: Auto-detect production based on hostname (client-side only)
   if (typeof window !== 'undefined') {
     const hostname = window.location.hostname
     // If not localhost, use production API
-    if (hostname !== 'localhost' && hostname !== '127.0.0.1' && !hostname.startsWith('192.168.')) {
+    if (hostname !== 'localhost' && hostname !== '127.0.0.1' && !hostname.startsWith('192.168.') && hostname !== '') {
       return 'https://api.websi.vn/api'
     }
   }
   
-  // If environment variable is set (build time), use it
-  if (typeof process !== 'undefined' && process.env.NEXT_PUBLIC_API_URL) {
-    return process.env.NEXT_PUBLIC_API_URL
+  // Priority 3: Check if we're on production domain
+  if (typeof window !== 'undefined') {
+    const origin = window.location.origin
+    if (origin.includes('websi.vn') || origin.includes('api.websi.vn')) {
+      return 'https://api.websi.vn/api'
+    }
   }
   
   // Default to localhost for development
